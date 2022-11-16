@@ -14,10 +14,13 @@ export default {
     components: {
         HomeList,
     },
-    computed: {
-        movies() {
-            return  this.$store.state.movies
-        }
+    created(){
+      this.getMovies()
+    },
+    methods:{
+      getMovies(){
+        this.$store.dispatch('getMovies')
+      }
     }
 }
 </script>
