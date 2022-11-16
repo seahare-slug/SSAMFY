@@ -1,18 +1,22 @@
 <template>
   <div>
-    <h1>Home</h1>
+    <h1>HomeList</h1>
     <hr>
-    <HomeList/>
+    <HomeListItem
+      v-for="movie in movies"
+      :key="movie.id"
+      :movie="movie"
+    />
   </div>
 </template>
 
 <script>
-import HomeList from '../components/HomeList.vue'
+import HomeListItem from './HomeListItem.vue';
 
 export default {
-    name: 'HomeView',
+    name: 'HomeList',
     components: {
-        HomeList,
+        HomeListItem,
     },
     computed: {
         movies() {
