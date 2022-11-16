@@ -31,9 +31,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'movies',
+
     'corsheaders',
     'rest_framework',
-    'movies',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
