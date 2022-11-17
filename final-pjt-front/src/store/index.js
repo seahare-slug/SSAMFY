@@ -15,6 +15,7 @@ export default new Vuex.Store({
     movies: [],
     genres: [],
     token: null,
+    user_name: [],
   },
   getters: {},
   mutations: {
@@ -23,6 +24,10 @@ export default new Vuex.Store({
     },
     GET_GENRES(state,res){
       state.genres = res
+    },
+    USER_NAME(state,user_name){
+        state.user_name = user_name
+
     }
   },
   actions: {
@@ -46,6 +51,10 @@ export default new Vuex.Store({
         .then((res)=>{
           context.commit("GET_GENRES",res.data)
         })
+    },
+    user_Name(context,user_name){
+      context.commit("USER_NAME",user_name)
+
     }
   },
   modules: {},

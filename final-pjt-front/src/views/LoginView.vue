@@ -39,7 +39,15 @@
           data: this.credentials,
         })
           .then((res) => {
+            const user_name = res.config.data.split(",")[0].split(":")[1].split('"')[1]
+            this.$store.dispatch('user_Name',user_name)
             localStorage.setItem("jwt", res.data.access);
+            // console.log(res)
+            // console.log(res.config.data)
+            // console.log(res.config.data.split(",")[0].split(":")[1].split('"')[1])
+            localStorage.setItem("user_name", res.config.data.split(",")[0].split(":")[1].split('"')[1])
+            
+            
             this.$emit("login");
             this.$router.push({ name: "home" });
             console.log('로그인 성공!')

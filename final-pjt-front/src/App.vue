@@ -5,7 +5,9 @@
       <router-link :to="{ name: 'recommend'}">Recommend</router-link> | 
       <router-link :to="{ name: 'SignUpView'}">SignUpPage</router-link> |
       <router-link :to="{ name: 'LoginView'}">LoginPage</router-link> |
+      <router-link :to="{ name: 'ProfileView'}">Profile</router-link> |
       <router-link @click.native="logout" to="#">Logout</router-link>
+
 
     </nav>
     <router-view/>
@@ -18,6 +20,7 @@ export default {
   methods : {
     logout() {
       localStorage.removeItem("jwt")
+      localStorage.removeItem("user_name")
       console.log('로그아웃 됨!')
     }
   }

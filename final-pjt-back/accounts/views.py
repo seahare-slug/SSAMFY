@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import UserSerializer
-
+from django.contrib.auth import get_user_model
 
 # 회원가입 요청
 @api_view(["POST"])
@@ -13,8 +13,8 @@ def signup(request):
     password = request.data.get("password")
     password_confirm = request.data.get("passwordConfirmation")
 
-    print(password)
-    print(password_confirm)
+    # print(password)
+    # print(password_confirm)
 
     # 비밀번호가 일치하지 않을때
     if password != password_confirm:
@@ -32,3 +32,9 @@ def signup(request):
         # 바꾼 비밀번호로 다시 저장
         user.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+
+def profile(request):
+    
+    print('하이')
+    return Response(request)
