@@ -16,10 +16,14 @@ export default {
     },
     created(){
       this.getMovies()
+      this.getGenres()
     },
     methods:{
       getMovies(){
         this.$store.dispatch('getMovies')
+      },
+      getGenres(){
+        this.$store.dispatch('getGenres')
       }
     }
 }
