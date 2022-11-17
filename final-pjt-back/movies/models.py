@@ -1,11 +1,14 @@
 from django.db import models
 
 # Create your models here.
+class Genre(models.Model):
+	name = models.CharField(max_length=30)
+
 
 class Movie(models.Model):
 	adult = models.BooleanField()
 	backdrop_path = models.CharField(max_length=100)
-	id = models.IntegerField(primary_key=True)
+	genre_ids = models.ManyToManyField(Genre, related_name='movie_genres')
 	original_language = models.TextField()
 	original_title = models.TextField()
 	overview = models.TextField()
