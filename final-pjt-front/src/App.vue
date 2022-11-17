@@ -1,30 +1,28 @@
 <template>
   <div id="app">
     <nav>
-      <router-link :to="{ name: 'home'}">Home</router-link> |
-      <router-link :to="{ name: 'recommend'}">Recommend</router-link> | 
-      <router-link :to="{ name: 'SignUpView'}">SignUpPage</router-link> |
-      <router-link :to="{ name: 'LoginView'}">LoginPage</router-link> |
-      <router-link :to="{ name: 'ProfileView'}">Profile</router-link> |
+      <router-link :to="{ name: 'home' }">Home</router-link> |
+      <router-link :to="{ name: 'recommend' }">Recommend</router-link> |
+      <router-link :to="{ name: 'SignUpView' }">SignUpPage</router-link> |
+      <router-link :to="{ name: 'LoginView' }">LoginPage</router-link> |
+      <router-link :to="{ name: 'ProfileView' }">Profile</router-link> |
       <router-link @click.native="logout" to="#">Logout</router-link>
-
-
     </nav>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name : 'App',
-  methods : {
+  name: "App",
+  methods: {
     logout() {
-      localStorage.removeItem("jwt")
-      localStorage.removeItem("user_name")
-      console.log('로그아웃 됨!')
-    }
-  }
-}
+      localStorage.removeItem("jwt");
+      localStorage.removeItem("userName");
+      console.log("로그아웃 됨!");
+    },
+  },
+};
 </script>
 
 <style>

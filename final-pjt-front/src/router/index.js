@@ -1,45 +1,45 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import RecommendView from '../views/RecommendView.vue'
-import SignUpView from '../views/SignUpView.vue'
-import LoginView from '../views/LoginView.vue'
-import ProfileView from '../views/ProfileView.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import HomeView from "../views/HomeView.vue";
+import RecommendView from "../views/RecommendView.vue";
+import SignUpView from "../views/SignUpView.vue";
+import LoginView from "../views/LoginView.vue";
+import ProfileView from "../views/ProfileView.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/",
+    name: "home",
+    component: HomeView,
   },
   {
-    path: '/Recommend',
-    name: 'recommend',
-    component: RecommendView
+    path: "/Recommend",
+    name: "recommend",
+    component: RecommendView,
   },
   {
-    path: '/signup',
-    name: 'SignUpView',
-    component : SignUpView
+    path: "/signup",
+    name: "SignUpView",
+    component: SignUpView,
   },
   {
-    path: '/login',
-    name: 'LoginView',
-    component : LoginView
+    path: "/login",
+    name: "LoginView",
+    component: LoginView,
   },
   {
-    path: '/profile',
-    name: 'ProfileView',
-    component: ProfileView
-  }
-]
+    path: "/profile",
+    name: "ProfileView",
+    component: ProfileView,
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

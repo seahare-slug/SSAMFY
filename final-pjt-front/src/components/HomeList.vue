@@ -19,12 +19,9 @@ export default {
       return this.$store.state.movies;
     },
     genres() {
-      return this.$store.state.genres
-    }
+      return this.$store.state.genres;
+    },
   },
-  created(){
-    console.log(this.genres)
-  }
 };
 </script>
 
