@@ -19,3 +19,8 @@ class Movie(models.Model):
 	video = models.BooleanField()
 	vote_average = models.FloatField()
 	vote_count = models.IntegerField()
+
+class Comment(models.Model):
+	movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+	content = models.TextField()
+	username = models.CharField(max_length=100)

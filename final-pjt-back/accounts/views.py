@@ -9,12 +9,8 @@ from django.contrib.auth import get_user_model
 @api_view(["POST"])
 def signup(request):
     # 비밀번호, 비밀번호 확인
-    
     password = request.data.get("password")
     password_confirm = request.data.get("passwordConfirmation")
-
-    # print(password)
-    # print(password_confirm)
 
     # 비밀번호가 일치하지 않을때
     if password != password_confirm:
@@ -34,7 +30,11 @@ def signup(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
 
-def profile(request):
     
-    print('하이')
-    return Response(request)
+@api_view(["POST"])
+def profile(request):
+    print(request.data)
+    username = request.data.get("username")
+    print(username)
+    print("======================하이============")
+    return Response(username)
