@@ -34,7 +34,7 @@ export default {
     };
   },
   methods: {
-    signUp: function () {
+    signUp() {
       axios({
         method: "post",
         url: "http://127.0.0.1:8000/accounts/signup/",
