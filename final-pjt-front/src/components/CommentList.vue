@@ -1,7 +1,11 @@
 <template>
   <div>
     <h1>THIS IS CONTETNLIST</h1>
-    <CommentListItem />
+    <CommentListItem
+      v-for="comment in comments"
+      :key="comment.id"
+      :comment="comment"
+    />
   </div>
 </template>
 
@@ -12,6 +16,11 @@ export default {
   name: "CommentList",
   components: {
     CommentListItem,
+  },
+  computed: {
+    comments() {
+      return this.$store.state.comments;
+    },
   },
 };
 </script>

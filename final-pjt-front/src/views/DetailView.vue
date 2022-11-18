@@ -39,10 +39,12 @@ export default {
         content: null,
         username: localStorage.getItem("userName"),
       },
+      commnents: [],
     };
   },
   created() {
     this.getArticleDetail();
+    this.getComments();
   },
   methods: {
     getArticleDetail() {
@@ -65,6 +67,24 @@ export default {
       })
         .then(() => {
           console.log("======Vue에서 데이터 보냄======");
+          this.detailViewData.content = null;
+        })
+        .then(() => {
+          this.getComments();
+          // this.$router.push({ name: "DetailView" });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getComments() {
+      axios({
+        method: "get",
+        url: `${API_URL}/api/v1/movies/${this.$route.params.id}/comment/`,
+      })
+        .then((res) => {
+          this.comments = res.data;
+          this.$store.dispatch("getComments", this.comments);
         })
         .catch((err) => {
           console.log(err);

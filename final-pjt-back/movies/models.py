@@ -4,7 +4,6 @@ from django.db import models
 class Genre(models.Model):
 	name = models.CharField(max_length=30)
 
-
 class Movie(models.Model):
 	adult = models.BooleanField()
 	backdrop_path = models.CharField(max_length=100)
@@ -24,3 +23,4 @@ class Comment(models.Model):
 	movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
 	content = models.TextField()
 	username = models.CharField(max_length=100)
+	created_at = models.DateTimeField(auto_now_add=True)

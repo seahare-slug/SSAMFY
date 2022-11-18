@@ -13,6 +13,7 @@ export default new Vuex.Store({
     movies: [],
     genres: [],
     userName: [],
+    comments: [],
     token: null,
   },
   getters: {},
@@ -25,6 +26,9 @@ export default new Vuex.Store({
     },
     USER_NAME(state, userName) {
       state.userName = userName;
+    },
+    GET_COMMENTS(state, comments) {
+      state.comments = comments;
     },
   },
   actions: {
@@ -50,6 +54,9 @@ export default new Vuex.Store({
     },
     userName(context, userName) {
       context.commit("USER_NAME", userName);
+    },
+    getComments(context, comments) {
+      context.commit("GET_COMMENTS", comments);
     },
   },
   modules: {},
