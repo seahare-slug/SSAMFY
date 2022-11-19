@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <h1>HomeList</h1>
-    <hr />
+  <div class="wrap-home-list">
     <HomeListItem v-for="movie in movies" :key="movie.id" :movie="movie" />
   </div>
 </template>
@@ -25,4 +23,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.wrap-home-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+</style>

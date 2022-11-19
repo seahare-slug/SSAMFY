@@ -8,7 +8,7 @@
       <router-link :to="{ name: 'ProfileView' }">Profile</router-link> |
       <router-link @click.native="logout" to="#">Logout</router-link>
     </nav>
-    <router-view />
+    <router-view class="main-container" />
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -35,7 +35,9 @@ export default {
 }
 
 nav {
+  background-color: pink;
   padding: 30px;
+  padding-left: 60%;
 }
 
 nav a {
