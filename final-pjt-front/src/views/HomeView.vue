@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Home</h1>
+    <hr />
     <HomeList />
   </div>
 </template>
@@ -28,4 +29,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped></style>

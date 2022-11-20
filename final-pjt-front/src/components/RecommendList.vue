@@ -1,23 +1,33 @@
 <template>
   <div>
-    <h1>RecommendList</h1>
-    <button @click="toggleClassic">
-      <span v-if="!isClassic">고전 명작 on </span>
-      <span v-if="isClassic">고전 명작 off </span>
-    </button>
-    <button @click="toggleIndependent">
-      <span v-if="!isIndependent">독립 영화 on </span>
-      <span v-if="isIndependent">독립 영화 off </span>
-    </button>
-
-    <hr />
-    <RecommendListItem
-      v-for="movie in movies"
-      :key="movie.id"
-      :movie="movie"
-      :isClassic="isClassic"
-      :isIndependent="isIndependent"
-    />
+    <div class="movie-filter">
+      <div
+        :class="{ 'common-btn': !isClassic, 'common-clicked-btn': isClassic }"
+        @click="toggleClassic"
+      >
+        <span v-if="isClassic">고전 명작 on </span>
+        <span v-if="!isClassic">고전 명작 off </span>
+      </div>
+      <div
+        :class="{
+          'common-btn': !isIndependent,
+          'common-clicked-btn': isIndependent,
+        }"
+        @click="toggleIndependent"
+      >
+        <span v-if="isIndependent">독립 영화 on </span>
+        <span v-if="!isIndependent">독립 영화 off </span>
+      </div>
+    </div>
+    <div class="wrap-recommand-list">
+      <RecommendListItem
+        v-for="movie in movies"
+        :key="movie.id"
+        :movie="movie"
+        :isClassic="isClassic"
+        :isIndependent="isIndependent"
+      />
+    </div>
   </div>
 </template>
 
@@ -51,4 +61,15 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.wrap-recommand-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+.movie-filter {
+  margin: 30px 0;
+  display: flex;
+  flex-direction: row-reverse;
+}
+</style>

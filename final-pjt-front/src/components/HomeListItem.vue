@@ -1,11 +1,17 @@
 <template>
-  <div class="wrap-home-item">
+  <div class="wrap-home-item movie-card">
     <h4>{{ movie.title }}</h4>
     <img
       class="poster-img"
       :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
       alt="movie_poster"
     />
+    <span @click="toggleLike" class="like" :class="{ 'is-liked': !isLiked }"
+      >🤍</span
+    >
+    <span @click="toggleLike" class="like" :class="{ 'is-liked': isLiked }"
+      >🧡</span
+    >
     <!-- DetailView로 이동 -->
     <!-- <span v-for="genre in genres" :key="genre.id">
       <span v-if="movie.genre_ids.includes(genre.id)">
@@ -13,8 +19,10 @@
       </span>
     </span> -->
     <div>
-      <router-link :to="{ name: 'DetailView', params: { id: movie.id } }"
-        >[DETAIL]</router-link
+      <router-link
+        class="common-btn"
+        :to="{ name: 'DetailView', params: { id: movie.id } }"
+        >DETAIL</router-link
       >
     </div>
   </div>
@@ -23,6 +31,11 @@
 <script>
 export default {
   name: "HomeListItem",
+  data() {
+    return {
+      isLiked: false,
+    };
+  },
   props: {
     movie: Object,
   },
@@ -31,18 +44,42 @@ export default {
     //   return this.$store.state.genres;
     // },
   },
+  methods: {
+    toggleLike() {
+      this.isLiked = !this.isLiked;
+    },
+  },
 };
 </script>
 
 <style scoped>
 .wrap-home-item {
-  border: black 3px solid;
-  border-radius: 5px;
+  position: relative;
   width: 20%;
   height: 50vh;
   margin: 5px;
 }
 .poster-img {
   height: 70%;
+}
+
+.like {
+  cursor: pointer;
+  font-size: 48px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  opacity: 0;
+}
+.is-liked {
+  display: block !important;
+}
+.like:hover {
+  opacity: 1;
+}
+img:hover ~ .like {
+  opacity: 1;
 }
 </style>

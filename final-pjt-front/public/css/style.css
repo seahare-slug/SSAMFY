@@ -1,4 +1,40 @@
+:root {
+  --common-background-color: palevioletred;
+  --common-font-color: azure;
+  --common-dark-color: #2c3e50;
+}
+
 .main-container {
   margin: 0 auto;
   width: 70%;
+}
+
+.movie-card {
+  border: var(--common-dark-color) 3px solid;
+  border-radius: 5px;
+}
+
+.common-btn {
+  cursor: pointer;
+  background-color: var(--common-background-color);
+  color: var(--common-font-color);
+  border: var(--common-font-color) 3px solid;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.common-btn:hover {
+  background-color: var(--common-dark-color);
+}
+
+.common-clicked-btn {
+  cursor: pointer;
+  background-color: var(--common-dark-color);
+  color: var(--common-font-color);
+  border: var(--common-font-color) 3px solid;
+  border-radius: 5px;
+  padding: 5px;
+}
+.common-clicked-btn:hover {
+  background-color: var(--common-background-color);
 }

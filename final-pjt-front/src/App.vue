@@ -35,17 +35,20 @@ export default {
 }
 
 nav {
-  background-color: pink;
+  background-color: palevioletred;
   padding: 30px;
   padding-left: 60%;
 }
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: rgb(250, 250, 250);
+  text-shadow: -1px 0 #2c3e50, 0 1px #2c3e50, 1px 0 #2c3e50, 0 -1px #2c3e50;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  font-weight: 900;
+  color: #2c3e50;
+  text-shadow: none;
 }
 </style>
