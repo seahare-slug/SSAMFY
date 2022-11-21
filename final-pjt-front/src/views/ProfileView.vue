@@ -1,15 +1,12 @@
 <template>
   <div>
-    <div
-      v-for="user in users"
-      :key="user.id"
+    <h1>{{ credentials.username }}님의 프로필</h1>
+    <h2>최신 영화 댓글</h2>
+    <p v-for="comment in comments"
+    :key="comment.username"
     >
-      <div v-if="user.username === credentials.username">
-        {{ user.username }} 님의 프로필 입니다
-        <br>
-        {{ user }}
-      </div>
-    </div>
+    {{comment.content}}
+    </p>
   </div>
 </template>
 
@@ -25,9 +22,12 @@ export default {
       },
     };
   },
-  computed: {
-      users() {
-        return this.$store.state.users;
+  computed:{
+    comments(){
+      return this.$store.state.comments
+    },
+    movies() {
+        return this.$store.state.movies;
       },
   },
   created() {
@@ -38,10 +38,12 @@ export default {
     })
       .then(() => {
         console.log("프로필 교신성공!");
+        console.log(this.comments)
       })
       .catch((err) => {
         console.log(err);
       });
+      
   },
 };
 </script>

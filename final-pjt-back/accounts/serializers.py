@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ("username", "liked_movie",)
+        fields = ("username",)
 
 class LikedSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=50)

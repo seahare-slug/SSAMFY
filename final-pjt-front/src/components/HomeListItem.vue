@@ -1,59 +1,54 @@
 <template>
-  <div class="wrap-home-item movie-card">
-    <h4>{{ movie.title }}</h4>
-    <img
-      class="poster-img"
-      :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
-      alt="movie_poster"
-    />
-    <span @click="toggleLike" class="like" :class="{ 'is-liked': !isLiked }"
-      >🤍</span
-    >
-    <span @click="toggleLike" class="like" :class="{ 'is-liked': isLiked }"
-      >🧡</span
-    >
-    <div>
-      <router-link
-        class="common-btn"
-        :to="{ name: 'DetailView', params: { id: movie.id } }"
-        >DETAIL</router-link
+  <div>
+    <div class="wrap-home-item movie-card">
+      <h4>{{ movie.title }}</h4>
+      <img
+        class="poster-img"
+        :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
+        alt="movie_poster"
+      />
+      <span @click="toggleLike" class="like" :class="{ 'is-liked': !isLiked }"
+        >🤍</span
       >
+      <span @click="toggleLike" class="like" :class="{ 'is-liked': isLiked }"
+        >🧡</span
+      >
+      <!-- DetailView로 이동 -->
+      <!-- <span v-for="genre in genres" :key="genre.id">
+      <span v-if="movie.genre_ids.includes(genre.id)">
+        {{ genre.name }}
+      </span>
+    </span> -->
+      <div>
+        <router-link
+          class="common-btn"
+          :to="{ name: 'DetailView', params: { id: movie.id } }"
+          >DETAIL</router-link
+        >
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-// import axios from 'axios';
-
 export default {
   name: "HomeListItem",
   data() {
     return {
       isLiked: false,
-      likedData: {
-        liked_movie_id: this.movie.id,
-        username: localStorage.getItem("userName"),
-      }
     };
   },
   props: {
     movie: Object,
   },
   computed: {
+    // genres() {
+    //   return this.$store.state.genres;
+    // },
   },
   methods: {
     toggleLike() {
       this.isLiked = !this.isLiked;
-      // axios({
-      //   method: "post",
-      //   url: "http://127.0.0.1:8000/accounts/profile/liked/",
-      //   data: {
-      //     likedData: this.likedData,
-      //   }
-      // })
-      //   .then(() => {
-      //     console.log("~~~~좋아요 했는지 보냅니다~~~~")
-      //   })
     },
   },
 };
@@ -62,12 +57,13 @@ export default {
 <style scoped>
 .wrap-home-item {
   position: relative;
-  width: 20%;
+  width: 300px;
   height: 50vh;
-  margin: 5px;
+  margin: 6px;
 }
 .poster-img {
-  height: 70%;
+  height: 75%;
+  width: 90%;
 }
 
 .like {

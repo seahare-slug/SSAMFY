@@ -147,12 +147,13 @@ export default {
 <style scoped>
 .wrap-recommand-item {
   position: relative;
-  width: 100%;
-  height: 60vh;
-  margin: 5px;
+  width: 300px;
+  height: 50vh;
+  margin: 6px;
 }
 .poster-img {
-  height: 70%;
+  height: 75%;
+  width: 90%;
 }
 .like {
   cursor: pointer;

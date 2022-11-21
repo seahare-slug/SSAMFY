@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav>
-      <span v-if="isLogined()">하이 {{userName}} | 
+      <span v-if="isLogined()"> 
         <router-link :to="{ name: 'home' }">Home</router-link> |
         <router-link :to="{ name: 'recommend' }">Recommend</router-link> |
         <router-link :to="{ name: 'ProfileView' }">Profile</router-link> |
@@ -64,10 +64,11 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: azure;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  font-weight: bolder;
+  color: black;
 }
 </style>

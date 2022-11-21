@@ -22,7 +22,19 @@
         />
         <button @click.prevent="submitComment">댓글 작성</button>
       </form>
-      <CommentList />
+      <CommentList/>
+      <button @click="getsimilarMovies">비슷한 영화 보러 가기</button>
+      <div v-for="smovie in newmovies"
+        :key="smovie.id"
+      >
+      {{smovie.title}}
+      <img :src="`https://image.tmdb.org/t/p/w500/${smovie.poster_path}`" alt="">
+      <!-- <router-link
+        class="common-btn"
+        :to="{ name: 'DetailView', params: { id: smovie.id } }"
+        >DETAIL</router-link
+      > -->
+      </div>
     </div>
   </div>
 </template>
@@ -32,7 +44,6 @@ import axios from "axios";
 
 import CommentList from "@/components/CommentList.vue";
 const API_URL = "http://127.0.0.1:8000";
-
 export default {
   name: "DetailView",
   components: {
@@ -51,6 +62,7 @@ export default {
         username: localStorage.getItem("userName"),
       },
       commnents: [],
+      newmovies:[],
     };
   },
   created() {
@@ -101,6 +113,15 @@ export default {
           console.log(err);
         });
     },
+    getsimilarMovies(){
+      axios({
+        method: 'get',
+        url: `https://api.themoviedb.org/3/movie/${this.detailViewData.movie.id}/similar?api_key=616c881ba896937b008706b9a5e911d0&language=ko-KR&page=1`
+      })
+      .then((res) =>{
+        this.newmovies = res.data.results
+      })
+    }
   },
 };
 </script>
