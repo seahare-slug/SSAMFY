@@ -12,12 +12,6 @@
     <span @click="toggleLike" class="like" :class="{ 'is-liked': isLiked }"
       >🧡</span
     >
-    <!-- DetailView로 이동 -->
-    <!-- <span v-for="genre in genres" :key="genre.id">
-      <span v-if="movie.genre_ids.includes(genre.id)">
-        {{ genre.name }}
-      </span>
-    </span> -->
     <div>
       <router-link
         class="common-btn"
@@ -29,24 +23,37 @@
 </template>
 
 <script>
+// import axios from 'axios';
+
 export default {
   name: "HomeListItem",
   data() {
     return {
       isLiked: false,
+      likedData: {
+        liked_movie_id: this.movie.id,
+        username: localStorage.getItem("userName"),
+      }
     };
   },
   props: {
     movie: Object,
   },
   computed: {
-    // genres() {
-    //   return this.$store.state.genres;
-    // },
   },
   methods: {
     toggleLike() {
       this.isLiked = !this.isLiked;
+      // axios({
+      //   method: "post",
+      //   url: "http://127.0.0.1:8000/accounts/profile/liked/",
+      //   data: {
+      //     likedData: this.likedData,
+      //   }
+      // })
+      //   .then(() => {
+      //     console.log("~~~~좋아요 했는지 보냅니다~~~~")
+      //   })
     },
   },
 };

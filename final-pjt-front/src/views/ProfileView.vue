@@ -1,6 +1,15 @@
 <template>
   <div>
-    <h1>{{ credentials.username }}님의 프로필</h1>
+    <div
+      v-for="user in users"
+      :key="user.id"
+    >
+      <div v-if="user.username === credentials.username">
+        {{ user.username }} 님의 프로필 입니다
+        <br>
+        {{ user }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -15,6 +24,11 @@ export default {
         username: localStorage.getItem("userName"),
       },
     };
+  },
+  computed: {
+      users() {
+        return this.$store.state.users;
+      },
   },
   created() {
     axios({

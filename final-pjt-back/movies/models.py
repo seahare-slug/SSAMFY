@@ -6,14 +6,14 @@ class Genre(models.Model):
 
 class Movie(models.Model):
 	adult = models.BooleanField()
-	backdrop_path = models.CharField(max_length=100)
+	backdrop_path = models.CharField(max_length=100, null=True)
 	genre_ids = models.ManyToManyField(Genre, related_name='movie_genres')
 	original_language = models.TextField()
 	original_title = models.TextField()
 	overview = models.TextField()
 	popularity = models.FloatField()
 	poster_path = models.CharField(max_length=100)
-	release_date = models.DateField()
+	release_date = models.CharField(max_length=100)
 	title = models.CharField(max_length=100)
 	video = models.BooleanField()
 	vote_average = models.FloatField()

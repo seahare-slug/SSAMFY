@@ -14,6 +14,7 @@ export default new Vuex.Store({
     genres: [],
     userName: [],
     comments: [],
+    users: [],
     token: null,
   },
   getters: {},
@@ -30,6 +31,9 @@ export default new Vuex.Store({
     GET_COMMENTS(state, comments) {
       state.comments = comments;
     },
+    GET_USERS(state, users) {
+      state.users = users;
+    }
   },
   actions: {
     getMovies(context) {
@@ -58,6 +62,15 @@ export default new Vuex.Store({
     getComments(context, comments) {
       context.commit("GET_COMMENTS", comments);
     },
+    getUsers(context) {
+      axios({
+        method: "get",
+        url: `${API_URL}/accounts/users/`,
+      }).then((res) => {
+        context.commit("GET_USERS", res.data);
+        console.log(res.data)
+      });
+    }
   },
   modules: {},
 });

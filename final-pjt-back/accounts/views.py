@@ -2,8 +2,9 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import UserSerializer
+from .serializers import UserSerializer, LikedSerializer
 from django.contrib.auth import get_user_model
+from .models import User
 
 # 회원가입 요청
 @api_view(["POST"])
@@ -29,8 +30,24 @@ def signup(request):
         user.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
-
+@api_view(["GET"])
+def get_users(request):
+    users = User.objects.all()
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data)
     
+# @api_view(["POST"])
+# def liked(request):
+#     username = request.data["likedData"]["username"]
+#     liked_movie_id = request.data["likedData"]["liked_movie_id"]
+    
+#     user = User.objects.get(username=username, liked_movie=liked_movie_id)
+#     if user:
+#         pass
+#     else:
+#         serializer = LikedSerializer(request.data)
+#         return Response(data=serializer.data)
+
 @api_view(["POST"])
 def profile(request):
     print(request.data)

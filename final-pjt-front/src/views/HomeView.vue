@@ -17,6 +17,7 @@ export default {
   created() {
     this.getMovies();
     this.getGenres();
+    this.getUsers();
   },
   methods: {
     getMovies() {
@@ -25,6 +26,9 @@ export default {
     getGenres() {
       this.$store.dispatch("getGenres");
     },
+    getUsers() {
+      this.$store.dispatch("getUsers");
+    }
   },
 };
 </script>

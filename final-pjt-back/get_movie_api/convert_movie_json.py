@@ -2,10 +2,10 @@
 import requests
 import json
 
-API_KEY = "{PUT_YOUR_API_KEY}"
+API_KEY = "616c881ba896937b008706b9a5e911d0"
 MOVIE_API = f"https://api.themoviedb.org/3/movie/popular?api_key={API_KEY}&language=ko-KR&page="
-START_PAGE = "{NUMBER}"
-END_PAGE = "{NUMBER}"
+START_PAGE = 1
+END_PAGE = 50
 
 new_json = []
 
