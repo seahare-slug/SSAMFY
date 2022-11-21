@@ -5,6 +5,12 @@
       <p>글 번호 : {{ detailViewData.movie?.id }}</p>
       <p>제목 : {{ detailViewData.movie?.title }}</p>
       <p>줄거리 : {{ detailViewData.movie?.overview }}</p>
+      <span v-for="genre in genres" :key="genre.id">
+        <span v-if="detailViewData.movie?.genre_ids.includes(genre.id)">
+          {{ genre.name }}
+        </span>
+        <!-- {{detailViewData.movie.genre_ids}} -->
+      </span>
     </div>
     <div>
       <form>
@@ -31,6 +37,11 @@ export default {
   name: "DetailView",
   components: {
     CommentList,
+  },
+  computed: {
+      genres() {
+        return this.$store.state.genres;
+      },
   },
   data() {
     return {

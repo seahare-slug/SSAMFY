@@ -1,26 +1,48 @@
 <template>
   <div id="app">
     <nav>
-      <router-link :to="{ name: 'home' }">Home</router-link> |
-      <router-link :to="{ name: 'recommend' }">Recommend</router-link> |
-      <router-link :to="{ name: 'SignUpView' }">SignUpPage</router-link> |
-      <router-link :to="{ name: 'LoginView' }">LoginPage</router-link> |
-      <router-link :to="{ name: 'ProfileView' }">Profile</router-link> |
-      <router-link @click.native="logout" to="#">Logout</router-link>
+      <span v-if="isLogined()">하이 {{userName}} | 
+        <router-link :to="{ name: 'home' }">Home</router-link> |
+        <router-link :to="{ name: 'recommend' }">Recommend</router-link> |
+        <router-link :to="{ name: 'ProfileView' }">Profile</router-link> |
+        <router-link @click.native="logout" to="#">Logout</router-link>    
+      </span>
+      <span v-else>
+        <router-link :to="{ name: 'home' }">Home</router-link> |
+        <router-link :to="{ name: 'recommend' }">Recommend</router-link> |
+        <router-link :to="{ name: 'SignUpView' }">SignUpPage</router-link> |
+        <router-link :to="{ name: 'LoginView' }">LoginPage</router-link> |
+      </span>
     </nav>
-    <router-view class="main-container" />
+    <router-view class="main-container"
+    @App-nav="navGet"
+    />
   </div>
 </template>
 
 <script>
+
 export default {
   name: "App",
+  data(){
+    return{
+      userName : null
+    }
+  },
   methods: {
     logout() {
       localStorage.removeItem("jwt");
       localStorage.removeItem("userName");
       console.log("로그아웃 됨!");
+      this.$router.push({ name: "LoginView" })
     },
+    isLogined(){
+      this.userName = localStorage.getItem('userName')
+      return localStorage.getItem('userName')
+    },
+    navGet(){
+      console.log('nav')
+    }
   },
 };
 </script>
@@ -35,20 +57,17 @@ export default {
 }
 
 nav {
-  background-color: palevioletred;
+  background-color: pink;
   padding: 30px;
   padding-left: 60%;
 }
 
 nav a {
   font-weight: bold;
-  color: rgb(250, 250, 250);
-  text-shadow: -1px 0 #2c3e50, 0 1px #2c3e50, 1px 0 #2c3e50, 0 -1px #2c3e50;
+  color: #2c3e50;
 }
 
 nav a.router-link-exact-active {
-  font-weight: 900;
-  color: #2c3e50;
-  text-shadow: none;
+  color: #42b983;
 }
 </style>

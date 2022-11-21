@@ -3,7 +3,10 @@
     <h1>Login</h1>
     <div>
       <label for="username">사용자 이름: </label>
-      <input type="text" id="username" v-model="credentials.username" />
+      <input type="text" id="username" v-model="credentials.username"
+      placeholder="아이디를 입력해주세요."
+      onkeyup="this.value=this.value.replace(/\s/,'')"
+      />
     </div>
     <div>
       <label for="password">비밀번호: </label>
@@ -12,6 +15,8 @@
         id="password"
         v-model="credentials.password"
         @keyup.enter="login"
+        placeholder="비밀번호를 입력해주세요."
+        onkeyup="this.value=this.value.replace(/\s/,'')"
       />
     </div>
     <button @click="login">로그인</button>

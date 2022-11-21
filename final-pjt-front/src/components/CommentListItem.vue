@@ -18,16 +18,19 @@ export default {
   },
   methods: {
     deleteComment() {
-      axios({
-        method: "delete",
-        url: `${API_URL}/api/v1/movies/${this.comment.id}/comment/delete/`,
-      })
+      if (this.comment.username === localStorage.getItem("userName")){
+
+        axios({
+          method: "delete",
+          url: `${API_URL}/api/v1/movies/${this.comment.id}/comment/delete/`,
+        })
         .then(() => {
           this.getComments();
         })
         .catch((err) => {
           console.log(err);
         });
+      }
     },
     getComments() {
       axios({

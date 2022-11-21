@@ -19,6 +19,7 @@ export default {
   },
   computed: {
     comments() {
+      console.log(this.$store.state.comments)
       return this.$store.state.comments;
     },
   },
