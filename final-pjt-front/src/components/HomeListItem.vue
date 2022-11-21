@@ -13,12 +13,6 @@
       <span @click="toggleLike" class="like" :class="{ 'is-liked': isLiked }"
         >🧡</span
       >
-      <!-- DetailView로 이동 -->
-      <!-- <span v-for="genre in genres" :key="genre.id">
-      <span v-if="movie.genre_ids.includes(genre.id)">
-        {{ genre.name }}
-      </span>
-    </span> -->
       <div>
         <router-link
           class="common-btn"
@@ -40,11 +34,6 @@ export default {
   },
   props: {
     movie: Object,
-  },
-  computed: {
-    // genres() {
-    //   return this.$store.state.genres;
-    // },
   },
   methods: {
     toggleLike() {

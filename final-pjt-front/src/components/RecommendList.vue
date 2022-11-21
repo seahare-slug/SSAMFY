@@ -63,12 +63,12 @@ export default {
 
 <style scoped>
 .wrap-recommand-list {
+  margin: 0 auto;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-evenly;
 }
 .movie-filter {
-  margin: 30px 0;
+  margin-bottom: 30px;
   display: flex;
   flex-direction: row-reverse;
 }

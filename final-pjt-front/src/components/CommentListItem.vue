@@ -1,10 +1,13 @@
 <template>
-  <div>
-    <h3>Here is Comment items</h3>
-    <div>{{ comment.content }}</div>
-    <div>{{ comment.username }}</div>
-    <div>{{ comment.created_at }}</div>
-    <button @click="deleteComment">[ DELETE ]</button>
+  <div class="wrap-comment">
+    <div>
+      <div>{{ comment.username }}</div>
+      <div>{{ comment.created_at.slice(0, 10) }}</div>
+    </div>
+    <div>
+      <div class="content">{{ comment.content }}</div>
+    </div>
+    <button @click="deleteComment">삭제</button>
   </div>
 </template>
 
@@ -18,18 +21,17 @@ export default {
   },
   methods: {
     deleteComment() {
-      if (this.comment.username === localStorage.getItem("userName")){
-
+      if (this.comment.username === localStorage.getItem("userName")) {
         axios({
           method: "delete",
           url: `${API_URL}/api/v1/movies/${this.comment.id}/comment/delete/`,
         })
-        .then(() => {
-          this.getComments();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+          .then(() => {
+            this.getComments();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     },
     getComments() {
@@ -49,4 +51,17 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.content {
+  padding: 10px;
+  background-color: rgba(216, 112, 147, 0.3);
+}
+.wrap-comment {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  border: solid pink 3px;
+  padding: 5%;
+}
+</style>
