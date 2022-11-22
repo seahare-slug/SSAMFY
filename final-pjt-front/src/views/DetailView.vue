@@ -26,7 +26,7 @@
     </div>
     <div>
       {{director?.name}}
-      <img :src="`https://image.tmdb.org/t/p/w500/${director?.profile_path}`" alt="">
+      <img :src="`https://image.tmdb.org/t/p/w500/${director.profile_path}`" alt="">
     </div>
     <div class="wrap-similar">
       <div class="similar-movie" v-for="smovie in newmovies" :key="smovie.id">

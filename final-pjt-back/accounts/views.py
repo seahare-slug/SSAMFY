@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import UserSerializer, LikedSerializer
 from django.contrib.auth import get_user_model
-from .models import User
+from .models import User, Movie
 
 # 회원가입 요청
 @api_view(["POST"])
@@ -36,17 +36,25 @@ def get_users(request):
     serializer = UserSerializer(users, many=True)
     return Response(serializer.data)
     
-# @api_view(["POST"])
-# def liked(request):
-#     username = request.data["likedData"]["username"]
-#     liked_movie_id = request.data["likedData"]["liked_movie_id"]
-    
-#     user = User.objects.get(username=username, liked_movie=liked_movie_id)
-#     if user:
-#         pass
-#     else:
-#         serializer = LikedSerializer(request.data)
-#         return Response(data=serializer.data)
+@api_view(["POST"])
+def liked(request, movie_id):
+    username = request.data["username"]
+    movie = Movie.objects.get(pk=movie_id)
+    user = User.objects.get(username=username)
+    # 만약 username에서 해당 DB에 일치하는 movie_id가 없으면 추가, 있으면 제거
+    if request.method == "POST":
+        if user.liked_movie.filter(pk=movie_id).exists():
+            user.liked_movie.remove(movie)
+        else:
+            user.liked_movie.add(movie)
+    serializer = UserSerializer(user)
+    return Response(serializer.data)
+
+@api_view(["GET"])
+def liked_set(request, username):
+    user = User.objects.get(username=username)
+    serializer = UserSerializer(user)
+    return Response(serializer.data)
 
 @api_view(["POST"])
 def profile(request):

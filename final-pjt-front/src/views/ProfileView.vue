@@ -21,6 +21,14 @@
       </div>
       <div>
         <h1>좋아요한 영화</h1>
+        <div
+          v-for="movie in movies"
+          :key="movie.id">
+          <div v-if="likeList.includes(movie.id)">
+            {{ movie.title }}
+            <img :src="`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`" alt="">
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -36,6 +44,7 @@ export default {
       credentials: {
         username: localStorage.getItem("userName"),
       },
+      likeList: [],
     };
   },
   computed:{
@@ -47,17 +56,22 @@ export default {
       },
   },
   created() {
-    axios({
-      method: "post",
-      url: "http://127.0.0.1:8000/accounts/profile/",
-      data: this.credentials,
-    })
-      .then(() => {
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.bringLike()
   },
+  methods: {
+    bringLike() {
+      axios({
+        method: "get",
+        url: `http://127.0.0.1:8000/accounts/liked/${this.credentials.username}/`,
+      })
+        .then((res) => {
+          this.likeList = res.data.liked_movie
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+  }
 };
 </script>
 
