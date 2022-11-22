@@ -18,7 +18,16 @@
         </span>
         <div class="overview">{{ detailViewData.movie?.overview }}</div>
         <button @click="getsimilarMovies">비슷한 영화 보러 가기</button>
+        <button @click="getCrews">출연진 보기</button>
       </div>
+    </div>
+    <div v-for="cast in crews" :key="cast.id">{{cast.name}}
+      <img :src="`https://image.tmdb.org/t/p/w500/${cast.profile_path}`" alt="">
+    </div>
+    <div>
+      <!-- {{director}} -->
+      {{director?.name}}
+      <img :src="`https://image.tmdb.org/t/p/w500/${director?.profile_path}`" alt="">
     </div>
     <div class="wrap-similar">
       <div class="similar-movie" v-for="smovie in newmovies" :key="smovie.id">
@@ -27,13 +36,13 @@
           alt="smovie_poster"
         />
         <h4 class="hide-title">{{ smovie.title }}</h4>
-        <!-- <div>
-        <router-link
+        <div>
+        <!-- <router-link
           class="common-btn"
           :to="{ name: 'DetailView', params: { id: smovie.id } }"
           >DETAIL</router-link
-        >
-      </div> -->
+        > -->
+        </div>
       </div>
     </div>
     <div class="wrap-comment">
@@ -75,6 +84,8 @@ export default {
       },
       commnents: [],
       newmovies: [],
+      crews: [],
+      director: null,
       similarPage: 1,
     };
   },
@@ -137,6 +148,21 @@ export default {
         this.similarPage += 1
       });
     },
+    getCrews(){
+      axios({
+        method:'get',
+        url: `https://api.themoviedb.org/3/movie/${this.detailViewData.movie.id}/credits?api_key=616c881ba896937b008706b9a5e911d0&language=ko-KR`
+      })
+      .then((res)=>{
+        console.log(res.data)
+        this.crews = res.data.cast.slice(0,3)
+        this.director = res.data.crew.filter(crew => crew.job==='Director')[0]
+        console.log(this.director[0].name)
+      })
+      .catch((err)=>{
+        console.log(err)
+      });
+    }
   },
 };
 </script>

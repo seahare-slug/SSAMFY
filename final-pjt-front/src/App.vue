@@ -14,7 +14,7 @@
         <router-link :to="{ name: 'LoginView' }">Log In</router-link>
       </span>
     </nav>
-    <router-view class="main-container" />
+    <router-view class="main-container" :key="$route.fullPath"/>
     <button @click="viewTop" class="top-btn">🔺</button>
   </div>
 </template>
