@@ -27,13 +27,13 @@
           alt="smovie_poster"
         />
         <h4 class="hide-title">{{ smovie.title }}</h4>
-        <div>
+        <!-- <div>
         <router-link
           class="common-btn"
           :to="{ name: 'DetailView', params: { id: smovie.id } }"
           >DETAIL</router-link
         >
-      </div>
+      </div> -->
       </div>
     </div>
     <div class="wrap-comment">
@@ -134,7 +134,6 @@ export default {
         url: `https://api.themoviedb.org/3/movie/${this.detailViewData.movie.id}/similar?api_key=616c881ba896937b008706b9a5e911d0&language=ko-KR&page=${this.similarPage}`,
       }).then((res) => {
         this.newmovies = res.data.results;
-        console.log(this.newmovies)
         this.similarPage += 1
       });
     },
