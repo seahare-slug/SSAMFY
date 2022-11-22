@@ -46,9 +46,9 @@
 
 <script>
 import axios from "axios";
-
 import CommentList from "@/components/CommentList.vue";
 const API_URL = "http://127.0.0.1:8000";
+
 export default {
   name: "DetailView",
   components: {
@@ -68,6 +68,7 @@ export default {
       },
       commnents: [],
       newmovies: [],
+      similarPage: 1,
     };
   },
   created() {
@@ -94,7 +95,6 @@ export default {
         data: this.detailViewData,
       })
         .then(() => {
-          console.log("======Vue에서 데이터 보냄======");
           this.detailViewData.content = null;
         })
         .then(() => {
@@ -120,9 +120,10 @@ export default {
     getsimilarMovies() {
       axios({
         method: "get",
-        url: `https://api.themoviedb.org/3/movie/${this.detailViewData.movie.id}/similar?api_key=616c881ba896937b008706b9a5e911d0&language=ko-KR&page=1`,
+        url: `https://api.themoviedb.org/3/movie/${this.detailViewData.movie.id}/similar?api_key=616c881ba896937b008706b9a5e911d0&language=ko-KR&page=${this.similarPage}`,
       }).then((res) => {
         this.newmovies = res.data.results;
+        this.similarPage += 1
       });
     },
   },
