@@ -68,7 +68,6 @@ export default new Vuex.Store({
         url: `${API_URL}/accounts/users/`,
       }).then((res) => {
         context.commit("GET_USERS", res.data);
-        console.log(res.data)
       });
     }
   },

@@ -51,10 +51,8 @@ export default {
           this.$store.dispatch("userName", userName);
           localStorage.setItem("jwt", res.data.access);
           localStorage.setItem("userName", userName);
-
           this.$emit("login");
           this.$router.push({ name: "home" });
-          console.log("로그인 성공!");
         })
         .catch((err) => {
           console.log(err);

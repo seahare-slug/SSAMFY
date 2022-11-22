@@ -27,6 +27,13 @@
           alt="smovie_poster"
         />
         <h4 class="hide-title">{{ smovie.title }}</h4>
+        <!-- <div>
+        <router-link
+          class="common-btn"
+          :to="{ name: 'DetailView', params: { id: smovie.id } }"
+          >DETAIL</router-link
+        >
+      </div> -->
       </div>
     </div>
     <div class="wrap-comment">
@@ -89,6 +96,10 @@ export default {
         });
     },
     submitComment() {
+      if (!localStorage.getItem('userName')){
+          alert('로그인이 필요합니다.')
+          this.$router.push({ name: "LoginView" });
+      }
       axios({
         method: "post",
         url: `${API_URL}/api/v1/movies/${this.detailViewData.movie.id}/comment/create/`,

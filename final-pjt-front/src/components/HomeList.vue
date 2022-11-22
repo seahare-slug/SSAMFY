@@ -1,21 +1,32 @@
 <template>
-  <div class="wrap-home-list">
-    <HomeListItem v-for="movie in randomMovie" :key="movie.id" :movie="movie" />
-    <button @click="getNowplayMovies">현재 상영 중인 영화 보기</button>
+  <div>
+    <button
+    @click="HomeReload"
+    > 영화 목록 리로드 </button>
+    <form action="">
+      <input type="text" name="" id="" v-model="find">
+      <button
+      @click.prevent="findMovie"
+      >검색</button>
+    </form>
+    <div class="wrap-home-list">
+      <HomeListItem v-for="movie in randomMovie" :key="movie.id" :movie="movie" />
+      <button @click="getNowplayMovies">현재 상영 중인 영화 보기</button>
     <div v-for="nmovie in nowmovies"
-        :key="nmovie.id"
-      >
-      {{nmovie.title}}
-      <img :src="`https://image.tmdb.org/t/p/w500/${nmovie.poster_path}`" alt="">
+    :key="nmovie.id"
+    >
+    {{nmovie.title}}
+    <img :src="`https://image.tmdb.org/t/p/w500/${nmovie.poster_path}`" alt="">
       <div>
-      <router-link
+        <router-link
         class="common-btn"
         :to="{ name: 'DetailView', params: { id: nmovie.id } }"
         >DETAIL</router-link
-      >
-    </div>
+        >
+      </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -31,11 +42,12 @@ export default {
   data() {
     return{
       randomMovie: [],
-      nowmovies : []
+      nowmovies : [],
+      find : null,
     }
   },
   created() {
-    this.randomMovie = _.sampleSize(this.movies, 30)
+    this.randomMovie = this.movies.slice(21,51)
   },
   computed: {
     movies() {
@@ -54,6 +66,12 @@ export default {
       .then((res) =>{
         this.nowmovies = res.data.results
       })
+    },
+    HomeReload(){
+      this.randomMovie = _.sampleSize(this.movies, 30)
+    },
+    findMovie(){
+      this.randomMovie = this.movies.filter(movie => movie.title.includes(this.find))
     }
   }
 };

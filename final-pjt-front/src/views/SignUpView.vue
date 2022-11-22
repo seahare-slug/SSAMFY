@@ -61,6 +61,8 @@ export default {
       } else if (this.credentials.password.length < 4) {
         alert("비밀번호는 4글자 이상 입력해주세요.");
         return;
+      } else if (this.credentials.password != this.credentials.passwordConfirmation) { 
+        alert("원래 입력하신 비밀번호와 다릅니다.")
       } else {
         axios({
           method: "post",
