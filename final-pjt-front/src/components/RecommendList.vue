@@ -1,9 +1,7 @@
 <template>
   <div>
     <div class="movie-filter">
-      <span class="common-btn" @click="bringLike"
-        >좋아요 기반 다시 추천받기</span
-      >
+      <div class="common-btn" @click="bringLike">좋아요 기반 다시 추천받기</div>
       <div
         :class="{ 'common-btn': !isClassic, 'common-clicked-btn': isClassic }"
         @click="toggleClassic"
@@ -37,7 +35,7 @@
 <script>
 import RecommendListItem from "./RecommendListItem.vue";
 import axios from "axios";
-import _ from "lodash"
+import _ from "lodash";
 export default {
   name: "RecommendList",
   components: {
@@ -128,8 +126,8 @@ export default {
               vote_count: movie.vote_count,
             });
           }
-          this.algoList.sort((a, b) => b["movieScore"] - a["movieScore"])
-          this.algoList = _.sampleSize(this.algoList.slice(0, 300), 100)
+          this.algoList.sort((a, b) => b["movieScore"] - a["movieScore"]);
+          this.algoList = _.sampleSize(this.algoList.slice(0, 300), 100);
           // 그 점수를 기반으로 새로운 movies를 만들어 정렬후 리스트로 보내주면 렌더링 끝.
         })
         .catch((err) => {
@@ -150,5 +148,8 @@ export default {
   margin-bottom: 30px;
   display: flex;
   flex-direction: row-reverse;
+}
+.movie-filter div {
+  margin: 5px;
 }
 </style>

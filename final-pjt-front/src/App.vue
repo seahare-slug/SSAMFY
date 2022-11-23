@@ -1,24 +1,24 @@
 <template>
   <div id="app">
-    <div id="backgroundImg" class="back-img back-img-seung">
-    </div>
-      <nav>
-        <span @click="changeBackground" v-if="isLogined()">
-          <router-link :to="{ name: 'home' }">Home</router-link> |
-          <router-link :to="{ name: 'recommend' }">Recommend</router-link> |
-          <router-link :to="{ name: 'ProfileView' }">Profile</router-link> |
-          <router-link @click.native="logout" to="#">Logout</router-link>
-        </span>
-        <span @click="changeBackground" v-else>
-          <router-link :to="{ name: 'home' }">Home</router-link> |
-          <router-link :to="{ name: 'recommend' }">Recommend</router-link> |
-          <router-link :to="{ name: 'SignUpView' }">Sign Up</router-link> |
-          <router-link :to="{ name: 'LoginView' }">Log In</router-link>
-        </span>
-      </nav>
-      <router-view class="main-container" :key="$route.fullPath"/>
-      <button @click="viewTop" class="top-btn">TOP</button>
-    </div>
+    <div id="backgroundImg" class="back-img back-img-seung"></div>
+    <nav>
+      <img class="logo" src="./img/SSAMFY.png" alt="logo" />
+      <span @click="changeBackground" v-if="isLogined()">
+        <router-link :to="{ name: 'home' }">Home</router-link> |
+        <router-link :to="{ name: 'recommend' }">Recommend</router-link> |
+        <router-link :to="{ name: 'ProfileView' }">Profile</router-link> |
+        <router-link @click.native="logout" to="#">Logout</router-link>
+      </span>
+      <span @click="changeBackground" v-else>
+        <router-link :to="{ name: 'home' }">Home</router-link> |
+        <router-link :to="{ name: 'recommend' }">Recommend</router-link> |
+        <router-link :to="{ name: 'SignUpView' }">Sign Up</router-link> |
+        <router-link :to="{ name: 'LoginView' }">Log In</router-link>
+      </span>
+    </nav>
+    <router-view class="main-container" :key="$route.fullPath" />
+    <button @click="viewTop" class="top-btn common-btn">TOP</button>
+  </div>
 </template>
 
 <script>
@@ -26,7 +26,7 @@ export default {
   name: "App",
   data() {
     return {
-      userName: null, 
+      userName: null,
     };
   },
   methods: {
@@ -43,10 +43,10 @@ export default {
       window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
     },
     changeBackground() {
-      const backgroundImg = document.querySelector("#backgroundImg")
-      backgroundImg.classList.toggle("back-img-seung")
-      backgroundImg.classList.toggle("back-img-song")
-    }
+      const backgroundImg = document.querySelector("#backgroundImg");
+      backgroundImg.classList.toggle("back-img-seung");
+      backgroundImg.classList.toggle("back-img-song");
+    },
   },
 };
 </script>
@@ -64,42 +64,48 @@ export default {
   position: fixed;
   left: 0;
   top: 0;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   background-repeat: no-repeat;
 }
 .back-img-seung {
-  background-image: url('./img/seungkyu_back.png');
+  background-image: url("./img/seungkyu_back.png");
 }
 .back-img-song {
-  background-image: url('./img/songsub_back.png');
+  background-image: url("./img/songsub_back.png");
   background-size: 30% 100%;
 }
 nav {
-  width: 40vw;
-  z-index: 100;
-  margin-bottom: 100px;
-  position: fixed;
-  left: 0;
-  top: 0;
+  display: flex;
+  justify-content: space-between;
   background-color: palevioletred;
-  padding: 30px;
-  padding-left: 60%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 90vw;
+  margin-bottom: 100px;
+  padding: 30px 10vw 10px 0;
+  z-index: 100;
+  border-bottom: 2px solid black;
 }
 
 nav a {
-  font-weight: bold;
   color: azure;
+  font-weight: bold;
 }
 
 nav a.router-link-exact-active {
-  font-weight: bolder;
   color: #2c3e50;
+  font-weight: bolder;
 }
 .top-btn {
   position: fixed;
   right: 50px;
   top: 90vh;
-  font-size: 24px;
+  font-size: 18px;
+}
+.logo {
+  width: 70px;
+  margin-left: 50px;
 }
 </style>

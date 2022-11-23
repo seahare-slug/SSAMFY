@@ -267,7 +267,7 @@ h1 {
   margin-bottom: 2%;
   padding: 20px;
   display: flex;
-  background-color: rgba(216, 112, 147, 0.3);
+  background-color: rgba(216, 112, 147, 0.9);
 }
 .wrap-detail img {
   width: 25vw;
@@ -300,12 +300,16 @@ h1 {
   font-weight: bold;
 }
 .wrap-comment {
-  color: azure;
+  background-color: rgba(245, 255, 255, 0.4);
+  height: 300px;
   padding: 5%;
   display: flex;
 }
 .wrap-comment form {
-  margin: 5% auto;
+  margin: 23px auto;
+}
+.wrap-comment button {
+  margin: 2px;
 }
 .wrap-similar {
   background-color: rgba(216, 112, 147, 0.3);
@@ -375,5 +379,6 @@ h1 {
 .detail-index {
   position: relative;
   z-index: 10;
+  padding-bottom: 50px;
 }
 </style>
