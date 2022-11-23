@@ -3,7 +3,6 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import UserSerializer, LikedSerializer
-from django.contrib.auth import get_user_model
 from .models import User, Movie
 
 # 회원가입 요청
@@ -18,7 +17,6 @@ def signup(request):
         return Response(
             {"error : 비밀번호가 일치하지 않습니다!"}, status=status.HTTP_400_BAD_REQUEST
         )
-
     serializer = UserSerializer(data=request.data)
 
     # 데이터가 유효한지 검증
@@ -47,19 +45,16 @@ def liked(request, movie_id):
             user.liked_movie.remove(movie)
         else:
             user.liked_movie.add(movie)
-    serializer = UserSerializer(user)
+    serializer = LikedSerializer(user)
     return Response(serializer.data)
 
 @api_view(["GET"])
 def liked_set(request, username):
     user = User.objects.get(username=username)
-    serializer = UserSerializer(user)
+    serializer = LikedSerializer(user)
     return Response(serializer.data)
 
 @api_view(["POST"])
 def profile(request):
-    print(request.data)
     username = request.data.get("username")
-    print(username)
-    print("======================하이============")
     return Response(username)
