@@ -5,18 +5,14 @@ from rest_framework import status
 from .serializers import UserSerializer, LikedSerializer
 from .models import User, Movie
 
-# 회원가입 요청
 @api_view(["POST"])
 def signup(request):
     # 비밀번호, 비밀번호 확인
     password = request.data.get("password")
     password_confirm = request.data.get("passwordConfirmation")
-
     # 비밀번호가 일치하지 않을때
     if password != password_confirm:
-        return Response(
-            {"error : 비밀번호가 일치하지 않습니다!"}, status=status.HTTP_400_BAD_REQUEST
-        )
+        return Response({"error : 비밀번호가 일치하지 않습니다!"}, status=status.HTTP_400_BAD_REQUEST)
     serializer = UserSerializer(data=request.data)
 
     # 데이터가 유효한지 검증
@@ -27,13 +23,13 @@ def signup(request):
         # 바꾼 비밀번호로 다시 저장
         user.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    
+
 @api_view(["GET"])
 def get_users(request):
     users = User.objects.all()
     serializer = UserSerializer(users, many=True)
     return Response(serializer.data)
-    
+
 @api_view(["POST"])
 def liked(request, movie_id):
     username = request.data["username"]

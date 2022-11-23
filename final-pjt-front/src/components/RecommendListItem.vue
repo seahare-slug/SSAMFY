@@ -119,11 +119,13 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: "RecommendListItem",
   data() {
     return {
       isLiked: false,
+      username: localStorage.getItem("userName"),
     };
   },
   props: {
@@ -131,14 +133,36 @@ export default {
     isClassic: Boolean,
     isIndependent: Boolean,
   },
-  computed: {
-    genres() {
-      return this.$store.state.genres;
-    },
+  created() {
+    this.setLike()
   },
   methods: {
     toggleLike() {
-      this.isLiked = !this.isLiked;
+      axios({
+        method: "post",
+        url: `http://127.0.0.1:8000/accounts/liked/${this.movie.id}/`,
+        data: {
+          username: this.username,
+        }
+      })
+        .then(() => {
+          this.isLiked = !this.isLiked;
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    setLike() {
+      axios({
+        method: "get",
+        url: `http://127.0.0.1:8000/accounts/liked/${this.username}/`,
+      })
+        .then((res) => {
+          this.isLiked = res.data.liked_movie.includes(this.movie.id)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
   },
 };
