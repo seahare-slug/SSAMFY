@@ -15,7 +15,7 @@
       </span>
     </nav>
     <router-view class="main-container" :key="$route.fullPath"/>
-    <button @click="viewTop" class="top-btn">🔺</button>
+    <button @click="viewTop" class="top-btn">TOP</button>
   </div>
 </template>
 
