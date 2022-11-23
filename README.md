@@ -1,4 +1,5 @@
-# Final Project
+# SSAMFY
+## **S**eungkyu **S**ongsub **A**nd **M**ovie **F**or **Y**ou
 
 ![shark](./img/shark_profile)
 
