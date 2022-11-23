@@ -18,8 +18,24 @@
         </span>
         <div class="overview">{{ detailViewData.movie?.overview }}</div>
         <div class="wrap-btn">
-          <button class="common-btn" @click="viewSimilarMovies">비슷한 영화 보러 가기</button>
+          <button class="common-btn" @click="viewSimilarMovies">
+            비슷한 영화 보러 가기
+          </button>
           <button class="common-btn" @click="viewCrews">출연진 보기</button>
+        </div>
+        <div class="wrap-like">
+          <span
+            @click="toggleLike"
+            class="like"
+            :class="{ 'is-liked': !isLiked }"
+            >🤍</span
+          >
+          <span
+            @click="toggleLike"
+            class="like"
+            :class="{ 'is-liked': isLiked }"
+            >🧡</span
+          >
         </div>
       </div>
     </div>
@@ -48,7 +64,13 @@
       </div>
     </div>
     <div>
-      <button id="loadNewSimilarBtn" class="common-btn toggle-similar" @click="getSimilarMovies">새로운 영화 불러오기</button>
+      <button
+        id="loadNewSimilarBtn"
+        class="common-btn toggle-similar"
+        @click="getSimilarMovies"
+      >
+        새로운 영화 불러오기
+      </button>
     </div>
     <div id="wrapSimilar" class="wrap-similar toggle-similar">
       <div class="similar-movie" v-for="smovie in newmovies" :key="smovie.id">
@@ -63,8 +85,8 @@
             :to="{ name: 'DetailView', params: { id: smovie.id } }"
             >DETAIL</router-link
           >
+        </div>
       </div>
-    </div>
     </div>
     <div class="wrap-comment">
       <CommentList />
@@ -108,6 +130,7 @@ export default {
       crews: [],
       director: null,
       similarPage: 1,
+      isLiked: false,
     };
   },
   created() {
@@ -122,6 +145,9 @@ export default {
       })
         .then((res) => {
           this.detailViewData.movie = res.data;
+        })
+        .then(() => {
+          this.setLike();
         })
         .catch((err) => {
           console.log(err);
@@ -175,7 +201,7 @@ export default {
       if (this.newmovies.length === 0) {
         this.getSimilarMovies();
       }
-      loadNewSimilarBtn.classList.toggle("toggle-similar")
+      loadNewSimilarBtn.classList.toggle("toggle-similar");
       wrapSimilar.classList.toggle("toggle-similar");
     },
     getCrews() {
@@ -200,6 +226,35 @@ export default {
       }
       wrapCrew.classList.toggle("toggle-crews");
     },
+    toggleLike() {
+      axios({
+        method: "post",
+        url: `http://127.0.0.1:8000/accounts/liked/${this.detailViewData.movie.id}/`,
+        data: {
+          username: this.detailViewData.username,
+        },
+      })
+        .then(() => {
+          this.isLiked = !this.isLiked;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    setLike() {
+      axios({
+        method: "get",
+        url: `http://127.0.0.1:8000/accounts/liked/${this.detailViewData.username}/`,
+      })
+        .then((res) => {
+          this.isLiked = res.data.liked_movie.includes(
+            this.detailViewData.movie.id
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 </script>
@@ -220,8 +275,12 @@ h1 {
 .wrap-detail-para {
   padding: 0 10% 0 10%;
 }
+.wrap-like {
+  height: 100px;
+  position: relative;
+}
 .wrap-btn button {
-  margin: 10px
+  margin: 10px;
 }
 .title {
   font-size: 2.4rem;
@@ -261,7 +320,8 @@ h1 {
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.similar-movie, .crew-info {
+.similar-movie,
+.crew-info {
   cursor: pointer;
   position: relative;
   margin: 2%;
@@ -295,7 +355,20 @@ h1 {
 .similar-movie img {
   width: 100%;
 }
-.toggle-crews, .toggle-similar {
+.toggle-crews,
+.toggle-similar {
   display: none;
+}
+.like {
+  cursor: pointer;
+  font-size: 48px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+.is-liked {
+  display: block !important;
 }
 </style>

@@ -3,7 +3,7 @@
     <h1>{{ credentials.username }} 님의 프로필</h1>
     <div class="wrap-profile-content">
       <div class="user-comments">
-        <h2>최근 작성한 영화 댓글</h2>
+        <h2>최근 본 영화 댓글</h2>
         <div v-for="movie in movies"
           :key="movie.id">
           <div v-if="comments.length !== 0">
@@ -19,14 +19,24 @@
           <h5>{{ comment.created_at.slice(0, 10) }}</h5>
         </div>
       </div>
-      <div>
+      <div class="user-likes">
         <h1>좋아요한 영화</h1>
-        <div
-          v-for="movie in movies"
-          :key="movie.id">
-          <div v-if="likeList.includes(movie.id)">
-            {{ movie.title }}
-            <img :src="`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`" alt="">
+        <div class="wrap-like-movie">
+          <div
+            v-for="movie in movies"
+            :key="movie.id">
+            <div
+              class="like-movie movie-card"
+              v-if="likeList.includes(movie.id)">
+              <img :src="`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`" alt="movie">
+              <div>
+                <router-link
+                  class="common-btn"
+                  :to="{ name: 'DetailView', params: { id: movie.id } }"
+                  >DETAIL</router-link
+                >
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -85,8 +95,13 @@ export default {
   padding: 10px;
   background-color: rgba(216, 112, 147, 0.3);
 }
+.user-comments {
+  width: 30%;
+}
+.user-likes {
+  width: 55%;
+}
 .wrap-comment {
-  width: 90%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -96,5 +111,27 @@ export default {
 .wrap-profile-content {
   display: flex;
   justify-content: space-around;
+  flex: 1 1 auto;
+}
+.wrap-like-movie {
+  background-color: rgba(216, 112, 147, 0.3);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  border: 2px black solid;
+  border-radius: 20px;
+  height: 100%;
+}
+.like-movie {
+  background-color: azure;
+  position: relative;
+  padding: 10px;
+  width: 7vw;
+  height: 12vw;
+  margin: 6px;
+}
+.like-movie img {
+  height: 85%;
+  width: 90%;
 }
 </style>
