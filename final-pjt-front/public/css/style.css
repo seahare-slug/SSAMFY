@@ -11,7 +11,7 @@
 }
 
 .movie-card {
-  border: var(--common-dark-color) 3px solid;
+  border: var(--common-font-color) 3px solid;
   border-radius: 5px;
 }
 

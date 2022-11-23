@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="detail-index">
     <h1>Detail</h1>
     <div class="wrap-detail">
       <img
@@ -300,6 +300,7 @@ h1 {
   font-weight: bold;
 }
 .wrap-comment {
+  color: azure;
   padding: 5%;
   display: flex;
 }
@@ -370,5 +371,9 @@ h1 {
 }
 .is-liked {
   display: block !important;
+}
+.detail-index {
+  position: relative;
+  z-index: 10;
 }
 </style>

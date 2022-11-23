@@ -7,7 +7,7 @@
     <div>
       <div class="content">{{ comment.content }}</div>
     </div>
-    <button @click="deleteComment">삭제</button>
+    <span class="delete-btn" @click="deleteComment">🗑</span>
   </div>
 </template>
 
@@ -63,5 +63,8 @@ export default {
   justify-content: space-between;
   border: solid pink 3px;
   padding: 5%;
+}
+.delete-btn {
+  font-size: 36px;
 }
 </style>

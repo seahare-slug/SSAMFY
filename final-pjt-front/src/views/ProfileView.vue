@@ -8,7 +8,7 @@
           :key="movie.id">
           <div v-if="comments.length !== 0">
             <div class="movie-title" v-if="comments[0].movie === movie.id">
-              {{ movie.title }}
+              <h2>{{ movie.title }}</h2>
             </div>
           </div>
         </div>
@@ -120,7 +120,6 @@ export default {
   flex-wrap: wrap;
   border: 2px black solid;
   border-radius: 20px;
-  height: 100%;
 }
 .like-movie {
   background-color: azure;
