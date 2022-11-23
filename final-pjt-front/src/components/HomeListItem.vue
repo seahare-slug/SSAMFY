@@ -38,23 +38,29 @@ export default {
     movie: Object,
   },
   created() {
-    this.setLike()
+    if (this.username){
+      this.setLike()
+    }
   },
   methods: {
     toggleLike() {
-      axios({
-        method: "post",
-        url: `http://127.0.0.1:8000/accounts/liked/${this.movie.id}/`,
-        data: {
-          username: this.username,
-        }
-      })
+      if (this.username){
+        axios({
+          method: "post",
+          url: `http://127.0.0.1:8000/accounts/liked/${this.movie.id}/`,
+          data: {
+            username: this.username,
+          }
+        })
         .then(() => {
           this.isLiked = !this.isLiked;
         })
         .catch((err) => {
           console.log(err)
         })
+      } else {
+        alert('로그인이 필요합니다!')
+      }
     },
     setLike() {
       axios({

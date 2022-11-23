@@ -73,7 +73,12 @@ export default {
             this.$router.push({ name: "LoginView" });
           })
           .catch((err) => {
-            console.log(err);
+            if (err.response.data.username == 'A user with that username already exists.') {
+              alert('이미 존재하는 username 입니다! 다른 username을 사용해 주세요. ')
+            }
+            else {
+              console.log(err)
+            }
           });
       }
     },
