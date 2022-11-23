@@ -6,13 +6,13 @@
 
 - **Vue Component 설계 및 routing**
 - **프로젝트 관리 및 UI 데이터 개선**
+- ERD 작성
+- Django 기능 개선
 
 #### 연혁
 
 **충남대학교 경제학과 학사 취득 22.02**
 **현 SSAFY 8기**
-
-#
 
 ![song](./img/song_profile)
 
@@ -21,6 +21,8 @@
 - **UI/UX**
 - **Django 서버 관리 및 유지보수**
 - **데이터 정제**
+- Django DB - Vue 연동
+- CSS 구성 및 개선
 
 #### 연혁
 
