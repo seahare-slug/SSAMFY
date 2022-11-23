@@ -55,7 +55,12 @@ export default {
           this.$router.push({ name: "home" });
         })
         .catch((err) => {
-          console.log(err);
+          if (err.response.data.detail == 'No active account found with the given credentials') {
+              alert('아이디가 없습니다! 회원가입을 진행해 주세요. ')
+            }
+          else {
+              console.log(err)
+            }
         });
     },
   },
