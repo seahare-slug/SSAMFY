@@ -1,11 +1,14 @@
 # SSAMFY (**S**eungkyu **S**ongsub **A**nd **M**ovie **F**or **Y**ou)
 How to Start
-- Vue(front) - final-pjt/final-pjt-front
-  `$ npm install`
-  `$ npm run serve`
-
-- Django(back) - final-pjt/final-pjt-back
-
+- Vue(front)
+  - final-pjt/final-pjt-front
+    - `$ npm install`
+    - `$ npm run serve`
+#
+- Django(back)
+  - final-pjt/final-pjt-back
+    - `$ pip install -r requirements`
+    - `$ python manage.py makemigrations`
 #
 ![shark](./readme-asset/img/shark_profile)
 
@@ -20,6 +23,7 @@ How to Start
 
 **충남대학교 경제학과 학사 취득 22.02**
 **현 SSAFY 8기**
+
 
 ![song](./readme-asset/img/song_profile)
 
