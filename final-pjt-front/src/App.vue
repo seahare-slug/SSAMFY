@@ -97,7 +97,7 @@ nav {
   width: 90vw;
   margin-bottom: 100px;
   padding: 30px 10vw 10px 0;
-  z-index: 100;
+  z-index: 1050;
   border-bottom: 2px solid black;
 }
 nav a {

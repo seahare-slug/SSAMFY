@@ -109,6 +109,7 @@ export default {
   padding: 0 5%;
 }
 .wrap-profile-content {
+  position: relative;
   display: flex;
   justify-content: space-around;
   flex: 1 1 auto;

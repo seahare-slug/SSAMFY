@@ -66,7 +66,7 @@ export default {
             err.response.data.detail ==
             "No active account found with the given credentials"
           ) {
-            alert("아이디가 없습니다! 회원가입을 진행해 주세요. ");
+            alert("유효한 아이디가 아니거나 비밀번호가 틀렸습니다!");
           } else {
             console.log(err);
           }
