@@ -37,14 +37,15 @@
             >🧡</span
           >
         </div>
+        <div class="common-btn" @click="goback">BACK</div>
       </div>
     </div>
     <div id="wrapCrew" class="toggle-crews">
       <div class="wrap-crew">
         <div class="crew-info">
           <div class="hide-title">
-            <h3>DIRECTOR</h3>
-            <h4>[{{ director?.name }}]</h4>
+            <h3>[DIRECTOR]</h3>
+            <h4>{{ director?.name }}</h4>
           </div>
           <img
             :src="`https://image.tmdb.org/t/p/w500/${director?.profile_path}`"
@@ -53,8 +54,8 @@
         </div>
         <div class="crew-info" v-for="cast in crews" :key="cast.id">
           <div class="hide-title">
-            <h3>CAST</h3>
-            <h4>[{{ cast.name }}]</h4>
+            <h3>[CAST]</h3>
+            <h4>{{ cast.name }}</h4>
           </div>
           <img
             :src="`https://image.tmdb.org/t/p/w500/${cast?.profile_path}`"
@@ -153,10 +154,10 @@ export default {
           console.log(err);
         });
     },
+    goback() { this.$router.go(-1) },
     submitComment() {
       if (!localStorage.getItem("userName")) {
         alert("로그인이 필요합니다.");
-        this.$router.push({ name: "LoginView" });
       }
       axios({
         method: "post",
@@ -300,8 +301,9 @@ h1 {
   font-weight: bold;
 }
 .wrap-comment {
-  background-color: rgba(245, 255, 255, 0.4);
-  height: 300px;
+  font-weight: bold;
+  background-color: rgb(128, 131, 131);
+  height: 100%;
   padding: 5%;
   display: flex;
 }
@@ -310,6 +312,7 @@ h1 {
 }
 .wrap-comment button {
   margin: 2px;
+  cursor: pointer;
 }
 .wrap-similar {
   background-color: rgba(216, 112, 147, 0.3);

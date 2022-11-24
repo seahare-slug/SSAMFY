@@ -120,6 +120,7 @@ export default {
   flex-wrap: wrap;
   border: 2px black solid;
   border-radius: 20px;
+  padding: 10px;
 }
 .like-movie {
   background-color: azure;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrap-homeview">
     <h1>Home</h1>
     <hr />
     <HomeList />

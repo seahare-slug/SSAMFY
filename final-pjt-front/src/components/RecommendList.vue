@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrap-recommend">
     <div class="movie-filter">
       <div class="common-btn" @click="bringLike">좋아요 기반 다시 추천받기</div>
       <div

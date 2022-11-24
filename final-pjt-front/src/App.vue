@@ -1,8 +1,11 @@
 <template>
   <div id="app">
+    <div class="default-background"></div>
     <div id="backgroundImg" class="back-img back-img-seung"></div>
     <nav>
-      <img class="logo" src="./img/SSAMFY.png" alt="logo" />
+      <router-link :to="{ name: 'home' }">
+          <img class="logo" src="./img/SSAMFY.png" alt="logo"/>
+        </router-link>
       <span @click="changeBackground" v-if="isLogined()">
         <router-link :to="{ name: 'home' }">Home</router-link> |
         <router-link :to="{ name: 'recommend' }">Recommend</router-link> |
@@ -53,12 +56,21 @@ export default {
 
 <style scoped>
 #app {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgb(44, 44, 44);
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  min-width: 800px;
+  min-height: 500px;
+}
+.default-background {
+  z-index: -100;
+  position: absolute;
+  background-color: rgb(44, 44, 44);
+  width: 100%;
+  height: 100vh;
 }
 .back-img {
   position: fixed;
@@ -76,10 +88,10 @@ export default {
   background-size: 30% 100%;
 }
 nav {
+  position: fixed;
   display: flex;
   justify-content: space-between;
   background-color: rgb(209, 132, 158);
-  position: fixed;
   top: 0;
   left: 0;
   width: 90vw;
@@ -88,7 +100,6 @@ nav {
   z-index: 100;
   border-bottom: 2px solid black;
 }
-
 nav a {
   color: azure;
   font-weight: bold;

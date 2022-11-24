@@ -65,6 +65,7 @@ export default {
   padding: 5%;
 }
 .delete-btn {
+  cursor: pointer;
   font-size: 36px;
 }
 </style>
