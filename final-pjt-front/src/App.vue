@@ -78,7 +78,7 @@ export default {
 nav {
   display: flex;
   justify-content: space-between;
-  background-color: palevioletred;
+  background-color: rgb(209, 132, 158);
   position: fixed;
   top: 0;
   left: 0;

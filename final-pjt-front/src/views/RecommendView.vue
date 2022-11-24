@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap-recommand">
+  <div>
     <h1>Recommend</h1>
     <hr />
     <RecommendList />
@@ -16,9 +16,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.wrap-recommand {
-  height: calc(100vh - 80px);
-}
-</style>

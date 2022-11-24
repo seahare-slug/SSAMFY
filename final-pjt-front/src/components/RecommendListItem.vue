@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="wrap-recommand-item movie-card"
+      class="wrap-recommend-item movie-card"
       v-if="
         isClassic === true &&
         movie.release_date.slice(0, 4) < 2022 &&
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div
-      class="movie-card wrap-recommand-item"
+      class="movie-card wrap-recommend-item"
       v-else-if="
         isClassic === false &&
         isIndependent === true &&
@@ -63,7 +63,7 @@
       </div>
     </div>
     <div
-      class="movie-card wrap-recommand-item"
+      class="movie-card wrap-recommend-item"
       v-else-if="
         isClassic === true &&
         movie.release_date.slice(0, 4) < 2022 &&
@@ -92,7 +92,7 @@
       </div>
     </div>
     <div
-      class="movie-card wrap-recommand-item"
+      class="movie-card wrap-recommend-item"
       v-else-if="isClassic === false && isIndependent === false"
     >
       <h4>{{ movie.title }}</h4>
@@ -175,7 +175,7 @@ export default {
 </script>
 
 <style scoped>
-.wrap-recommand-item {
+.wrap-recommend-item {
   position: relative;
   width: 300px;
   height: 50vh;

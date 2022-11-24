@@ -77,6 +77,9 @@ export default {
 </script>
 
 <style scoped>
+.wrap-login {
+  position: relative;
+}
 h1 {
   margin-top: 10%;
 }

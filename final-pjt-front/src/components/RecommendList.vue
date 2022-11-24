@@ -20,11 +20,14 @@
         <span v-if="!isIndependent">독립 영화 off </span>
       </div>
     </div>
-    <div v-if="!username"
-    class ="recommend-text"
-    >로그인이 필요한 페이지입니다.</div>
-    <img src="../img/SSAMFY.png" alt="" class ="recommend-img">
-    <div class="wrap-recommand-list">
+    <div v-if="!username">
+      <div
+        class ="recommend-text"
+      >로그인이 필요한 페이지입니다.
+      </div>
+      <img src="../img/SSAMFY.png" alt="" class ="recommend-img">
+    </div>
+    <div class="wrap-recommend-list">
       <RecommendListItem
         v-for="movie in algoList"
         :key="movie.id"
@@ -132,7 +135,6 @@ export default {
           }
           this.algoList.sort((a, b) => b["movieScore"] - a["movieScore"]);
           this.algoList = _.sampleSize(this.algoList.slice(0, 300), 100);
-          // 그 점수를 기반으로 새로운 movies를 만들어 정렬후 리스트로 보내주면 렌더링 끝.
         })
         .catch((err) => {
           console.log(err);
@@ -143,7 +145,7 @@ export default {
 </script>
 
 <style scoped>
-.wrap-recommand-list {
+.wrap-recommend-list {
   margin: 0 auto;
   display: flex;
   flex-flow: row wrap;
