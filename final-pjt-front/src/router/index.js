@@ -6,6 +6,7 @@ import SignUpView from "../views/SignUpView.vue";
 import LoginView from "../views/LoginView.vue";
 import ProfileView from "../views/ProfileView.vue";
 import DetailView from "../views/DetailView.vue";
+import NotFound from "../views/NotFound"
 
 Vue.use(VueRouter);
 
@@ -40,6 +41,15 @@ const routes = [
     name: "DetailView",
     component: DetailView,
   },
+  {
+    path: "/404",
+    name: "notFount",
+    component: NotFound
+  },
+  {
+    path: '*',
+    component: NotFound
+  }
 ];
 
 const router = new VueRouter({
