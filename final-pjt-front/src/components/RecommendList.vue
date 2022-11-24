@@ -20,6 +20,10 @@
         <span v-if="!isIndependent">독립 영화 off </span>
       </div>
     </div>
+    <div v-if="!username"
+    class ="recommend-text"
+    >로그인이 필요한 페이지입니다.</div>
+    <img src="../img/SSAMFY.png" alt="" class ="recommend-img">
     <div class="wrap-recommand-list">
       <RecommendListItem
         v-for="movie in algoList"
@@ -151,5 +155,16 @@ export default {
 }
 .movie-filter div {
   margin: 5px;
+}
+
+.recommend-img {
+  width: 70%;
+  height: 70%;
+
+}
+
+.recommend-text{
+  color: azure;
+  font-size: 20px;
 }
 </style>
