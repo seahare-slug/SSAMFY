@@ -1,7 +1,13 @@
-# SSAMFY
-## **S**eungkyu **S**ongsub **A**nd **M**ovie **F**or **Y**ou
+# SSAMFY (**S**eungkyu **S**ongsub **A**nd **M**ovie **F**or **Y**ou)
+How to Start
+- Vue(front) - final-pjt/final-pjt-front
+  `$ npm install`
+  `$ npm run serve`
 
-![shark](./img/shark_profile)
+- Django(back) - final-pjt/final-pjt-back
+
+#
+![shark](./readme-asset/img/shark_profile)
 
 ### 팀장 유승규
 
@@ -15,7 +21,7 @@
 **충남대학교 경제학과 학사 취득 22.02**
 **현 SSAFY 8기**
 
-![song](./img/song_profile)
+![song](./readme-asset/img/song_profile)
 
 ### 팀원 김송섭
 
