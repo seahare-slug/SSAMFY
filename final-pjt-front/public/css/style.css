@@ -35,6 +35,7 @@ button {
 }
 
 .common-clicked-btn {
+  position: relative;
   cursor: pointer;
   background-color: var(--common-dark-color);
   color: var(--common-font-color);
