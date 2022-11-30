@@ -37,7 +37,7 @@
             >🧡</span
           >
         </div>
-        <div class="common-btn" @click="goback">BACK</div>
+        <div class="common-btn" @click="goBack">BACK</div>
       </div>
     </div>
     <div id="wrapCrew" class="toggle-crews">
@@ -74,7 +74,7 @@
       </button>
     </div>
     <div id="wrapSimilar" class="wrap-similar toggle-similar">
-      <div class="similar-movie" v-for="smovie in newmovies" :key="smovie.id">
+      <div class="similar-movie" v-for="smovie in newMovies" :key="smovie.id">
         <h3 class="hide-title">{{ smovie.title }}</h3>
         <img
           :src="`https://image.tmdb.org/t/p/w500/${smovie.poster_path}`"
@@ -127,7 +127,7 @@ export default {
         username: localStorage.getItem("userName"),
       },
       commnents: [],
-      newmovies: [],
+      newMovies: [],
       crews: [],
       director: null,
       similarPage: 1,
@@ -154,7 +154,9 @@ export default {
           console.log(err);
         });
     },
-    goback() { this.$router.go(-1) },
+    goBack() {
+      this.$router.go(-1);
+    },
     submitComment() {
       if (!localStorage.getItem("userName")) {
         alert("로그인이 필요합니다.");
@@ -192,14 +194,14 @@ export default {
         method: "get",
         url: `https://api.themoviedb.org/3/movie/${this.detailViewData.movie.id}/similar?api_key=616c881ba896937b008706b9a5e911d0&language=ko-KR&page=${this.similarPage}`,
       }).then((res) => {
-        this.newmovies = res.data.results;
+        this.newMovies = res.data.results;
         this.similarPage += 1;
       });
     },
     viewSimilarMovies() {
       const wrapSimilar = document.querySelector("#wrapSimilar");
       const loadNewSimilarBtn = document.querySelector("#loadNewSimilarBtn");
-      if (this.newmovies.length === 0) {
+      if (this.newMovies.length === 0) {
         this.getSimilarMovies();
       }
       loadNewSimilarBtn.classList.toggle("toggle-similar");
@@ -265,10 +267,10 @@ h1 {
   margin: 5% auto;
 }
 .wrap-detail {
+  background-color: rgba(216, 112, 147, 0.9);
+  display: flex;
   margin-bottom: 2%;
   padding: 20px;
-  display: flex;
-  background-color: rgba(216, 112, 147, 0.9);
 }
 .wrap-detail img {
   width: 25vw;
@@ -277,8 +279,8 @@ h1 {
   padding: 0 10% 0 10%;
 }
 .wrap-like {
-  height: 100px;
   position: relative;
+  height: 100px;
 }
 .wrap-btn button {
   margin: 10px;
@@ -293,26 +295,26 @@ h1 {
   font-size: 1.7rem;
 }
 .overview {
-  text-align: left;
-  line-height: 30px;
+  background-color: rgba(245, 255, 255, 0.4);
   margin: 10% 0 5% 0;
   padding: 5%;
-  background-color: rgba(245, 255, 255, 0.4);
+  text-align: left;
   font-weight: bold;
+  line-height: 30px;
 }
 .wrap-comment {
-  font-weight: bold;
   background-color: rgb(128, 131, 131);
+  display: flex;
   height: 100%;
   padding: 5%;
-  display: flex;
+  font-weight: bold;
 }
 .wrap-comment form {
   margin: 23px auto;
 }
 .wrap-comment button {
-  margin: 2px;
   cursor: pointer;
+  margin: 2px;
 }
 .wrap-similar {
   background-color: rgba(216, 112, 147, 0.3);
@@ -330,21 +332,21 @@ h1 {
 }
 .similar-movie,
 .crew-info {
-  cursor: pointer;
-  position: relative;
-  margin: 2%;
-  width: 200px;
   flex: 0 0 auto;
+  position: relative;
+  width: 200px;
+  margin: 2%;
+  cursor: pointer;
 }
 .wrap-crew {
+  background-color: rgba(216, 112, 147, 0.3);
   display: flex;
   justify-content: space-evenly;
-  background-color: rgba(216, 112, 147, 0.3);
   margin-bottom: 50px;
 }
 .crew-info img {
-  border-radius: 20%;
   border: rgb(216, 192, 200) 4px solid;
+  border-radius: 20%;
   width: 100%;
 }
 .similar-movie:hover > img {

@@ -4,8 +4,8 @@
     <div id="backgroundImg" class="back-img back-img-seung"></div>
     <nav>
       <router-link :to="{ name: 'home' }">
-          <img class="logo" src="./img/SSAMFY.png" alt="logo"/>
-        </router-link>
+        <img class="logo" src="./img/SSAMFY.png" alt="logo" />
+      </router-link>
       <span @click="changeBackground" v-if="isLogined()">
         <router-link :to="{ name: 'home' }">Home</router-link> |
         <router-link :to="{ name: 'recommend' }">Recommend</router-link> |
@@ -66,9 +66,9 @@ export default {
   min-height: 500px;
 }
 .default-background {
-  z-index: -100;
-  position: absolute;
   background-color: rgb(44, 44, 44);
+  position: absolute;
+  z-index: -100;
   width: 100%;
   height: 100vh;
 }
@@ -88,16 +88,16 @@ export default {
   background-size: 30% 100%;
 }
 nav {
-  position: fixed;
+  background-color: rgb(209, 132, 158);
   display: flex;
   justify-content: space-between;
-  background-color: rgb(209, 132, 158);
+  position: fixed;
+  z-index: 1050;
   top: 0;
   left: 0;
   width: 90vw;
   margin-bottom: 100px;
   padding: 30px 10vw 10px 0;
-  z-index: 1050;
   border-bottom: 2px solid black;
 }
 nav a {
@@ -111,8 +111,8 @@ nav a.router-link-exact-active {
 }
 .top-btn {
   position: fixed;
-  right: 50px;
   top: 90vh;
+  right: 50px;
   font-size: 18px;
 }
 .logo {
